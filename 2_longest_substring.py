@@ -1,0 +1,18 @@
+# Given a string s, find the length of the longest 
+# substring
+# without repeating characters.
+
+def lengthOfLongestSubstring(self, s : str) -> int:
+    '''
+    Time complexity: O(n)
+    '''
+    # create a dictionary to store the index of each character
+    char_index = {}
+    left = 0
+    max_length = 0
+    for right in range(len(s)):
+        if s[right] in char_index:
+            left = max(left, char_index[s[right]] + 1)
+        char_index[s[right]] = right
+        max_length = max(max_length, right - left + 1)
+    return max_length
