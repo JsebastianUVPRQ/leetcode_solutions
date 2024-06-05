@@ -23,3 +23,32 @@ from 30_days_activities
 where activity_date between '2019-06-28' and '2019-07-27'
 group by activity_date
 
+-- ---------------------------------------------------
+-- 
+-- Input: 
+-- Employees table:
+-- +-------------+---------+------------+-----+ 
+-- | employee_id | name    | reports_to | age |
+-- |-------------|---------|------------|-----|
+-- | 1           | Michael | null       | 45  |
+-- | 2           | Alice   | 1          | 38  |
+-- | 3           | Bob     | 1          | 42  |
+-- | 4           | Charlie | 2          | 34  |
+-- | 5           | David   | 2          | 40  |
+-- | 6           | Eve     | 3          | 37  |
+-- | 7           | Frank   | null       | 50  |
+-- | 8           | Grace   | null       | 48  |
+-- +-------------+---------+------------+-----+ 
+-- Output: 
+-- +-------------+---------+---------------+-------------+
+-- | employee_id | name    | reports_count | average_age |
+-- | ----------- | ------- | ------------- | ----------- |
+-- | 1           | Michael | 2             | 40          |
+-- | 2           | Alice   | 2             | 37          |
+-- | 3           | Bob     | 1             | 37  
+
+select e.employee_id, e.name, count(distinct e2.employee_id) as reports_count, avg(e2.age) as average_age
+from employees e
+left join employees e2 on e.employee_id = e2.reports_to
+group by e.employee_id
+having reports_count > 0

@@ -15,6 +15,7 @@ WHERE YEAR(ls.Date_Time) = YEAR(CURDATE())
 SELECT DATE_FORMAT(ls.Date_Time, '%d%m%Y') AS Date,
        u.Name AS 'User name',
        COUNT(ls.Id_User) AS 'Number of logins per day'
+       
 FROM logins_system ls
 JOIN users u ON ls.Id_User = u.Id_User
 WHERE YEAR(ls.Date_Time) = YEAR(CURDATE())
