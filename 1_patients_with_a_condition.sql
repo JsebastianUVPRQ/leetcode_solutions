@@ -45,11 +45,11 @@ Explanation: Bob and George both have a condition that STARTS with DIAB1 prefix.
 
 ------------------------------------ MySql---------------------------------
 */
-SELECT patient_id, patient_name, conditions
-FROM Patients
-WHERE conditions LIKE '%DIAB1%';
+/* Write your PL/SQL query statement below */
+select * from patients
+where conditionS like '% DIAB1%' OR conditionS like 'DIAB1%' ;
 
 -- --------------------- Oracle-----------------------
-SELECT patient_id, patient_name, conditions
-FROM Patients
-WHERE conditions LIKE '%DIAB1%';
+/* Write your PL/SQL query statement below */
+select * from patients
+where conditionS like '% DIAB1%' OR conditionS like 'DIAB1%' ;
