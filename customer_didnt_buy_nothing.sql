@@ -75,37 +75,19 @@ As we can see, users with IDs 30 and 96 visited the mall one time without making
 
 ---------------------------- MySql ------------------------------------- */
 
-WITH
-cte1 AS (
-    SELECT customer_id, COUNT(visit_id) AS count_no
-    FROM Visits
-    LEFT JOIN Transactions
-    USING(visit_id)
-    WHERE amount IS NULL
-    GROUP BY customer_id
-)
-
-SELECT customer_id, COUNT(visit_id)
-FROM cte1
-GROUP BY customer_id
-ORDER BY customer_id
+SELECT v.customer_id, COUNT(v.visit_id) AS count_no_trans
+FROM Visits v
+LEFT JOIN Transactions t ON v.visit_id = t.visit_id
+WHERE t.transaction_id IS NULL
+GROUP BY v.customer_id;
 
 /* ----------------------------------- Oracle ---------------------------- */
 
-WITH
-cte1 AS (
-    SELECT customer_id, COUNT(visit_id) AS count_no
-    FROM Visits
-    LEFT JOIN Transactions
-    USING(visit_id)
-    WHERE amount IS NULL
-    GROUP BY customer_id
-)
-
-SELECT customer_id, COUNT(visit_id)
-FROM cte1
-GROUP BY customer_id
-ORDER BY customer_id
+SELECT v.customer_id, COUNT(v.visit_id) AS count_no_trans
+FROM Visits v
+LEFT JOIN Transactions t ON v.visit_id = t.visit_id
+WHERE t.transaction_id IS NULL
+GROUP BY v.customer_id;
 
 
 
