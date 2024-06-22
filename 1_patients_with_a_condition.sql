@@ -1,4 +1,5 @@
-Table: Patients
+/*
+ Table: Patients
 
 +--------------+---------+
 | Column Name  | Type    |
@@ -40,4 +41,15 @@ Output:
 | 3          | Bob          | DIAB100 MYOP |
 | 4          | George       | ACNE DIAB100 | 
 +------------+--------------+--------------+
-Explanation: Bob and George both have a condition that starts with DIAB1.
+Explanation: Bob and George both have a condition that STARTS with DIAB1 prefix.
+
+------------------------------------ MySql---------------------------------
+*/
+SELECT patient_id, patient_name, conditions
+FROM Patients
+WHERE conditions LIKE '%DIAB1%';
+
+-- --------------------- Oracle-----------------------
+SELECT patient_id, patient_name, conditions
+FROM Patients
+WHERE conditions LIKE '%DIAB1%';
