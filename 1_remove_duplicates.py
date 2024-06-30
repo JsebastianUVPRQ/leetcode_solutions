@@ -30,3 +30,5 @@ class Solution_1(object):
 # porque el array está ordenado, entonces si el elemento j es igual al elemento i,
 # entonces el elemento j es igual a todos los elementos anteriores a él, por lo que no
 # es necesario hacer nada.
+
+## lEETCODE EXCERCISE
