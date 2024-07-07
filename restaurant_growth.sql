@@ -60,29 +60,12 @@ Explanation:
 4th moving average from 2019-01-04 to 2019-01-10 has an average_amount of (130 + 110 + 140 + 150 + 80 + 110 + 130 + 150)/7 = 142.86
 */
 
-WITH CustomerPayments AS (
-    SELECT 
-        visited_on, 
-        amount,
-        SUM(amount) OVER (
-            ORDER BY visited_on 
-            ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
-        ) AS sum_amount,
-        COUNT(amount) OVER (
-            ORDER BY visited_on 
-            ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
-        ) AS count_days
-    FROM 
-        Customer
-)
-SELECT 
-    visited_on,
-    sum_amount AS amount,
-    ROUND(sum_amount / count_days, 2) AS average_amount
-FROM 
-    CustomerPayments
-WHERE 
-    count_days = 7
-ORDER BY 
-    visited_on;
+SELECT visited_on, amount, ROUND(amount/7, 2) average_amount
+FROM (
+    SELECT DISTINCT visited_on, 
+    SUM(amount) OVER(ORDER BY visited_on RANGE BETWEEN INTERVAL 6 DAY   PRECEDING AND CURRENT ROW) amount, 
+    MIN(visited_on) OVER() 1st_date 
+    FROM Customer
+) t
+WHERE visited_on>= 1st_date+6;
 
