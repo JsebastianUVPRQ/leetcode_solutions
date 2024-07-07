@@ -77,11 +77,14 @@ WITH CustomerPayments AS (
 )
 SELECT 
     visited_on,
-    sum_amount AS amount,
-    ROUND(sum_amount / count_days, 2) AS average_amount
+    SUM(amount) AS amount,
+    ROUND(SUM(sum_amount) / COUNT(*), 2) AS average_amount
 FROM 
     CustomerPayments
-WHERE 
-    count_days = 7
+GROUP BY 
+    visited_on
+HAVING 
+    COUNT_days = 7
 ORDER BY 
     visited_on;
+
