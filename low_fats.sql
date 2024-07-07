@@ -61,3 +61,14 @@ Group by machine_id;
 
 
 ------------------------------------------------
+# Write your MySQL query statement below
+/* Write your PL/SQL query statement below */
+
+select t1.product_id, first_year, t1.quantity, t1.price  
+from sales t1
+join (
+    select product_id, MIN(year) as first_year
+    from Sales
+    GROUP BY product_id
+) t2 ON t1.product_id = t2.product_id AND t1.year = t2.first_year;
+ 
