@@ -68,7 +68,7 @@ WITH CustomerPayments AS (
             ORDER BY visited_on 
             ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
         ) AS sum_amount,
-        COUNT(*) OVER (
+        COUNT(amount) OVER (
             ORDER BY visited_on 
             ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
         ) AS count_days
@@ -77,14 +77,12 @@ WITH CustomerPayments AS (
 )
 SELECT 
     visited_on,
-    SUM(amount) AS amount,
-    ROUND(SUM(sum_amount) / COUNT(*), 2) AS average_amount
+    sum_amount AS amount,
+    ROUND(sum_amount / count_days, 2) AS average_amount
 FROM 
     CustomerPayments
-GROUP BY 
-    visited_on
-HAVING 
-    COUNT_days = 7
+WHERE 
+    count_days = 7
 ORDER BY 
     visited_on;
 
