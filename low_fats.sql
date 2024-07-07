@@ -58,3 +58,6 @@ Group by machine_id;
 Select machine_id, Round(Avg(timestamp), 3) as processing_time
 From Activity
 Group by machine_id;
+
+
+------------------------------------------------
