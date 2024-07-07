@@ -81,12 +81,17 @@ Table: UnitsSold
 +---------------+---------+
 This table may contain duplicate rows.
 Each row of this table indicates the date, units, and product_id of each product sold.
+
+Write a solution to find the AVERAGE SELLING PRICE for each product. average_price should be rounded to 2 decimal places.
+
+Return the result table in any order.
+
+The result format is in the following example.
 */
-select product_id, start_date, end_date, price, units from Prices p
-join UnitsSold u
+select u.product_id, round(sum(price * units)/sum(units),2) as average_price
+from Prices p
+right join UnitsSold u
 on p.product_id = u.product_id
-and u.purchase_date between p.start_date and p.end_date
-order by product_id, purchase_date;
-
-
+where purchase_date between start_date and end_date
+group by product_id;
 
