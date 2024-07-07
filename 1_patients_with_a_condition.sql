@@ -88,10 +88,15 @@ Return the result table in any order.
 
 The result format is in the following example.
 */
-select u.product_id, round(sum(price * units)/sum(units),2) as average_price
-from Prices p
-right join UnitsSold u
-on p.product_id = u.product_id
-where purchase_date between start_date and end_date
-group by product_id;
 
+SELECT 
+    u.product_id, 
+    COALESCE(ROUND(SUM(p.price * u.units) / (SUM(u.units), 2), 0) AS average_price
+FROM 
+    Prices p
+ JOIN 
+    UnitsSold u ON p.product_id = u.product_id
+WHERE 
+    u.purchase_date BETWEEN start_date AND end_date
+GROUP BY 
+    u.product_id;
