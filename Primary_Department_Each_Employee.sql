@@ -18,5 +18,15 @@ Employees can belong to multiple departments. When the employee joins other depa
 
 Write a solution to report all the employees with their primary department. For employees who belong to one department, report their only department.
 
-Return the result table in any order.
-/*
+Return the result table in any order. */
+
+
+
+select employee_id, department_id as primary_department
+from Employee
+where primary_flag = 'Y'
+union
+select employee_id, department_id as primary_department
+from Employee
+group by employee_id
+having count(employee_id) = 1
