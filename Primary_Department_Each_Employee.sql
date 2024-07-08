@@ -20,13 +20,12 @@ Write a solution to report all the employees with their primary department. For 
 
 Return the result table in any order. */
 
-
-
-select employee_id, department_id as primary_department
+-- Solution
+select employee_id, department_id as department_id
 from Employee
 where primary_flag = 'Y'
 union
-select employee_id, department_id as primary_department
+select employee_id, department_id as department_id
 from Employee
 group by employee_id
 having count(employee_id) = 1
