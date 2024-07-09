@@ -168,9 +168,10 @@ select user_id, concat(upper(left(name, 1)), lower(right(name, length(name) - 1)
 from Users
 order by user_id
 
-/* ----------- Find the Team Size -----------
-Table: Triangle
+/* ----------- Triangle Judgement -----------
 
+
+Table: Triangle
 +-------------+------+
 | Column Name | Type |
 +-------------+------+
@@ -207,3 +208,11 @@ Output:
 | 13 | 15 | 30 | No       |
 | 10 | 20 | 15 | Yes      |
 +----+----+----+----------+
+*/
+
+select x, y, z,
+case
+    when x + y > z and x + z > y and y + z > x then 'Yes'
+    else 'No'
+end as triangle
+from Triangle
