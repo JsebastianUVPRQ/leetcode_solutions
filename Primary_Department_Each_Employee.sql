@@ -43,7 +43,7 @@ Table: Queries
 | rating      | int     |
 +-------------+---------+
 This table may have duplicate rows.
-This table contains information collected from some queries on a database.
+This table contains information collected from some queries on a database
 The position column has a value from 1 to 500.
 The rating column has a value from 1 to 5. Query with rating less than 3 is a poor query.
  
@@ -62,3 +62,7 @@ Both quality and poor_query_percentage should be rounded to 2 decimal places.
 
 Return the result table in any order.
 */
+
+select query_name, round(avg(cast(rating as float)/position), 2) as quality, round(sum(case when rating < 3 then 1 else 0 end)/count(*), 2) as poor_query_percentage
+from Queries
+group by query_name
