@@ -32,10 +32,4 @@ HAVING SUM(weight) <= 1000
 ORDER BY person_id DESC
 LIMIT 1;
 
--- solution to oracle
-SELECT person_name
-FROM Queue
-GROUP BY person_id, person_name, weight
-HAVING SUM(weight) <= 1000
-ORDER BY person_id DESC
-FETCH FIRST ROW ONLY;
+
