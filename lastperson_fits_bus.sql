@@ -82,9 +82,8 @@ Output:
 */
 
 -- solution using window function
-select distinct name
-from (
-    select name, count(id) over(partition by managerId) as cnt
-    from Employee
-) as t
-where cnt>=5
+SELECT a.name 
+FROM Employee a 
+JOIN Employee b ON a.id = b.managerId 
+GROUP BY b.managerId 
+HAVING COUNT(*) >= 5
