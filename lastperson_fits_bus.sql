@@ -24,7 +24,7 @@ The result format is in the following example.
 
 
 */
-# Write your MySQL query statement below
+
 with recursive cte as(
     select person_name,turn,weight as total
     from queue
