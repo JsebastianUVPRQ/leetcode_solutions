@@ -38,52 +38,64 @@ with recursive cte as(
 select person_name from cte order by total desc limit 1
 
 /*
-manager with at least 5 direct reports
-Table: Employee
+A single number is a number that appeared only once in the MyNumbers table.
 
-+-------------+---------+
-| Column Name | Type    |
-+-------------+---------+
-| id          | int     |
-| name        | varchar |
-| department  | varchar |
-| managerId   | int     |
-+-------------+---------+
-id is the primary key (column with unique values) for this table.
-Each row of this table indicates the name of an employee, their department, and the id of their manager.
-If managerId is null, then the employee does not have a manager.
-No employee will be the manager of themself.
+Find the largest single number. If there is no single number, report null.
+
+The result format is in the following example.
+
  
-
-Write a solution to find managers with at least five direct reports.
-
-Return the result table in any order.
 
 Example 1:
 
 Input: 
-Employee table:
-+-----+-------+------------+-----------+
-| id  | name  | department | managerId |
-+-----+-------+------------+-----------+
-| 101 | John  | A          | null      |
-| 102 | Dan   | A          | 101       |
-| 103 | James | A          | 101       |
-| 104 | Amy   | A          | 101       |
-| 105 | Anne  | A          | 101       |
-| 106 | Ron   | B          | 101       |
-+-----+-------+------------+-----------+
+MyNumbers table:
++-----+
+| num |
++-----+
+| 8   |
+| 8   |
+| 3   |
+| 3   |
+| 1   |
+| 4   |
+| 5   |
+| 6   |
++-----+
+Output: 
++-----+
+| num |
++-----+
+| 6   |
++-----+
+Explanation: The single numbers are 1, 4, 5, and 6.
+Since 6 is the largest single number, we return it.
+Example 2:
+
+Input: 
+MyNumbers table:
++-----+
+| num |
++-----+
+| 8   |
+| 8   |
+| 7   |
+| 7   |
+| 3   |
+| 3   |
+| 3   |
++-----+
 Output: 
 +------+
-| name |
+| num  |
 +------+
-| John |
+| null |
 +------+
+Explanation: There are no single numbers in the input table so we return null.
 */
 
--- solution using window function
-SELECT a.name 
-FROM Employee a 
-JOIN Employee b ON a.id = b.managerId 
-GROUP BY b.managerId 
-HAVING COUNT(*) >= 5
+-- solution
+select max(num) as num
+from mynumbers
+group by num
+having count(num)=1
