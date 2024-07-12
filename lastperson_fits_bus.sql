@@ -95,7 +95,16 @@ Explanation: There are no single numbers in the input table so we return null.
 */
 
 -- solution
-select max(num) as num
-from mynumbers
+
+select num
+from MyNumbers
 group by num
 having count(num)=1
+order by num desc
+limit 1
+
+-- rewrite to dhow "null" if there is a max but no single number (appears more than once)
+
+select ifnull(num,null) as num
+from MyNumbers
+group by num
