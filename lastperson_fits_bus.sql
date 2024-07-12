@@ -96,14 +96,10 @@ Explanation: There are no single numbers in the input table so we return null.
 
 -- solution
 
-SELECT 
-    CASE 
-        WHEN MAX(num) IS NULL THEN 'null' 
-        ELSE MAX(num) 
-    END AS num
+SELECT MAX(num) AS num
 FROM (
     SELECT num
     FROM MyNumbers
     GROUP BY num
     HAVING COUNT(num) = 1
-) AS singles
+) AS unique_numbers;
