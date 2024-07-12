@@ -94,12 +94,12 @@ Output:
 Explanation: There are no single numbers in the input table so we return null.
 */
 
--- solution
+-- Write your MySQL query statement belownu
 
-SELECT MAX(num) AS num
-FROM (
-    SELECT num
-    FROM MyNumbers
-    GROUP BY num
-    HAVING COUNT(num) = 1
-) AS unique_numbers;
+select max(num) as num 
+from (
+    select num 
+    from Mynumbers 
+    group by num 
+    having count(num)=1) 
+    as nu
