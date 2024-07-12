@@ -96,15 +96,14 @@ Explanation: There are no single numbers in the input table so we return null.
 
 -- solution
 
-select num
-from MyNumbers
-group by num
-having count(num)=1
-order by num desc
-limit 1
-
--- rewrite to dhow "null" if there is a max but no single number (appears more than once)
-
-select ifnull(num,null) as num
-from MyNumbers
-group by num
+SELECT 
+    CASE 
+        WHEN MAX(num) IS NULL THEN 'null' 
+        ELSE MAX(num) 
+    END AS num
+FROM (
+    SELECT num
+    FROM MyNumbers
+    GROUP BY num
+    HAVING COUNT(num) = 1
+) AS singles
