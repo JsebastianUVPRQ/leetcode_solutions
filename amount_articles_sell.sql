@@ -91,6 +91,21 @@ Explanation:
 Only the player with id 1 logged back in after the first day he had logged in so the answer is 1/3 = 0.33
 */
 
+-- select the fraction of players that logged in again on the day after the day they first logged in
+
+SELECT ROUND(COUNT(DISTINCT player_id) / COUNT(DISTINCT player_id), 2) AS fraction
+FROM Activity
+WHERE (player_id, event_date) IN (
+    SELECT player_id, MIN(event_date) AS event_date
+    FROM Activity
+    GROUP BY player_id
+)
+AND (player_id, event_date + INTERVAL 1 DAY) IN (
+    SELECT player_id, MIN(event_date) + INTERVAL 1 DAY AS event_date
+    FROM Activity
+    GROUP BY player_id
+);
+
 
 
 
