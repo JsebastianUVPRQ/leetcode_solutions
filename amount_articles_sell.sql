@@ -71,6 +71,19 @@ Write a solution to report the fraction of players that logged in again on the d
 */
 
 select round(count(distinct player_id) / count(distinct player_id), 2) as fraction
+from Activity
+where (player_id, event_date) in (
+    select player_id, min(event_date) as event_date
+    from Activity
+    group by player_id
+)
+and (player_id, event_date) in (
+    select player_id, date_add(min(event_date), interval 1 day) as event_date
+    from Activity
+    group by player_id
+);
+
+
 
 
 
