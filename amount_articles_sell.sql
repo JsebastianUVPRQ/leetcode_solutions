@@ -93,18 +93,28 @@ Only the player with id 1 logged back in after the first day he had logged in so
 
 -- select the fraction of players that logged in again on the day after the day they first logged in
 
-SELECT ROUND(COUNT(DISTINCT player_id) / COUNT(DISTINCT player_id), 2) AS fraction
-FROM Activity
-WHERE (player_id, event_date) IN (
-    SELECT player_id, MIN(event_date) AS event_date
+WITH FirstLogin AS (
+    SELECT
+        player_id,
+        MIN(event_date) AS first_login_date
     FROM Activity
     GROUP BY player_id
+),
+NextDayLogin AS (
+    SELECT DISTINCT
+        a.player_id
+    FROM Activity a
+    JOIN FirstLogin fl
+    ON a.player_id = fl.player_id
+    WHERE a.event_date = DATE_ADD(fl.first_login_date, INTERVAL 1 DAY)
 )
-AND (player_id, event_date + INTERVAL 1 DAY) IN (
-    SELECT player_id, MIN(event_date) + INTERVAL 1 DAY AS event_date
-    FROM Activity
-    GROUP BY player_id
-);
+SELECT
+    ROUND(COUNT(ndl.player_id) / COUNT(fl.player_id), 2) AS fraction
+FROM
+    FirstLogin fl
+LEFT JOIN
+    NextDayLogin ndl ON fl.player_id = ndl.player_id;
+
 
 
 
