@@ -70,19 +70,6 @@ Each row is a record of a player who logged in and played a number of games (pos
 Write a solution to report the fraction of players that logged in again on the day after the day they first logged in, rounded to 2 decimal places. In other words, you need to count the number of players that logged in for at least two consecutive days starting from their first login date, then divide that number by the total number of players.
 */
 
-select round(count(distinct player_id) / count(distinct player_id), 2) as fraction
-from Activity
-where (player_id, event_date) in (
-    select player_id, min(event_date) as event_date
-    from Activity
-    group by player_id
-)
-and (player_id, event_date) in (
-    select player_id, date_add(min(event_date), interval 1 day) as event_date
-    from Activity
-    group by player_id
-);
-
 
 
 
