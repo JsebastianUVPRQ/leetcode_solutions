@@ -50,5 +50,6 @@ GROUP BY p.product_name
 HAVING unit >= 100;
 
 
+-- 2020-02-01 ~ 2020-02-29
 
 
