@@ -15,15 +15,15 @@
  Return the result table in any order.
  
  The result format is shown in the following example.
-
+*/ 
 Select teacher_id, count(distinct subject_id) as subject_count
 from subjects_by_teacher
 group by teacher_id
-*/
+
 
 -- -------------------------------------------------------
 
--- -------------------------------------------------- Replace Employee ID With The Unique Identifier --------------------------------------
+-- --------------------------------------------------  --------------------------------------
 
 /* -------------------------------------------------------
 Table: Employees
