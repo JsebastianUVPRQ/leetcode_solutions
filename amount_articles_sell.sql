@@ -51,7 +51,7 @@ GROUP BY p.product_name
 HAVING unit >= 100;
 
 
--- ---------------------- Game Play Analysis IV ---------------------------------------------------------
+
 /*
 Table: Activity
 
