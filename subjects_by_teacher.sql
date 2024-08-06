@@ -20,8 +20,3 @@ Select teacher_id, count(distinct subject_id) as subject_count
 from subjects_by_teacher
 group by teacher_id
 
-
--- -------------------------------------------------------
-
--- --------------------------------------------------  --------------------------------------
-
