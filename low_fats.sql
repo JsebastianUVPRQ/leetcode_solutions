@@ -60,8 +60,8 @@ From Activity
 Group by machine_id;
 
 
-------------------------------------------------
-# Write your MySQL query statement below
+-- ----------------------------------------------
+-- Write your MySQL query statement below
 /* Write your PL/SQL query statement below */
 
 select t1.product_id, first_year, t1.quantity, t1.price  

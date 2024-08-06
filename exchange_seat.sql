@@ -43,5 +43,3 @@ ON
     OR (S1.row_num % 2 = 0 AND S1.row_num - 1 = S2.row_num)
 ORDER BY 
     S1.id;
-
-
