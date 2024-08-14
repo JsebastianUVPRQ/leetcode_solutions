@@ -174,3 +174,6 @@ case
     else 'No'
 end as triangle
 from Triangle
+
+/* ejercicio --
+*/
