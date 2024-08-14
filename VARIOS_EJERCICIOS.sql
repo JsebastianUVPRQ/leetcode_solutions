@@ -175,5 +175,5 @@ case
 end as triangle
 from Triangle
 
-/* ejercicio --
+/* ejercicio valid emails
 */
