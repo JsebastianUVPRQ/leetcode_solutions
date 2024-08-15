@@ -33,17 +33,11 @@
  details[i] consists of digits from '0' to '9'.
  details[i][10] is either 'M' or 'F' or 'O'.
 '''
-class Solution:
-    def numSeniorCitizens(self, details) -> int:
+class Solution(object):
+    def countSeniors(self, details):
         count = 0
-        for i in details:
-            if int(i[11:13]) > 60:
+        for detail in details:
+            age = int(detail[11:13])  # Suponiendo que los caracteres 11 y 12 contienen la edad.
+            if age > 60:
                 count += 1
         return count
-# Time complexity: O(n)
-
-# -- 2nd approach
-class Solution:
-    def numSeniorCitizens(self, details) -> int:
-        return sum([int(i[11:13]) > 60 for i in details])
-# Time complexity: O(n)
