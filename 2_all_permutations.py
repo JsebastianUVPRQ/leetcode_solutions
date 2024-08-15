@@ -34,10 +34,16 @@
  details[i][10] is either 'M' or 'F' or 'O'.
 '''
 class Solution:
-    def numSeniorCitizens(self, details: List[str]) -> int:
+    def numSeniorCitizens(self, details) -> int:
         count = 0
         for i in details:
             if int(i[11:13]) > 60:
                 count += 1
         return count
+# Time complexity: O(n)
+
+# -- 2nd approach
+class Solution:
+    def numSeniorCitizens(self, details) -> int:
+        return sum([int(i[11:13]) > 60 for i in details])
 # Time complexity: O(n)
