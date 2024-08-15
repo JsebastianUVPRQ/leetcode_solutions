@@ -32,12 +32,13 @@
  details[i].length == 15
  details[i] consists of digits from '0' to '9'.
  details[i][10] is either 'M' or 'F' or 'O'.
-'''
-class Solution(object):
+ 
+'''class Solution(object):
     def countSeniors(self, details):
-        count = 0
-        for detail in details:
-            age = int(detail[11:13])  # Suponiendo que los caracteres 11 y 12 contienen la edad.
-            if age > 60:
-                count += 1
-        return count
+        count=0
+        for i in details:
+            age=i[11]+i[12]
+            age=int(age)
+            if age>60:
+                count+=1
+        return (count)
