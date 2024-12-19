@@ -1,7 +1,7 @@
 import numpy as np
 
 
-'def calculate'(input_list):
+def calculate(input_list):
 
     """
     Calcula la media, varianza, desviación estándar, máximo, mínimo y suma
