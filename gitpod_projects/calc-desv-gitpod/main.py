@@ -4,7 +4,7 @@ from unittest import main
 
 
 def main():
-    # Lista de 9 números
+    '''Recibe una lista de 9 números y calcula la media, varianza, desviación estándar, máximo, mínimo y suma de una matriz 3x3 generada a partir de la lista.'''
     input_list = [0, 1, 2, 3, 4, 5, 6, 7, 8]
     
     try:
