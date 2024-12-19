@@ -1,6 +1,7 @@
 # main.py
 from mean_var_std import calculate
 
+
 def main():
     # Lista de 9 números
     input_list = [0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -16,6 +17,7 @@ def main():
     
     except ValueError as ve:
         print(f"Error: {ve}")
+
 
 if __name__ == "__main__":
     main()
