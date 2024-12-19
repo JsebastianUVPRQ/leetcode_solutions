@@ -58,7 +58,8 @@ def calculate(input_list):
     # Convertir todos los valores escalares a listas
     for key in ['mean', 'variance', 'standard deviation', 'max', 'min', 'sum']:
         # Asegurar que el tercer elemento (aplanado) sea una lista
-        if isinstance(calculations[key][2], (int, float, np.integer, np.floating)):
+        if isinstance(
+            calculations[key][2], (int, float, np.integer, np.floating)):
             calculations[key][2] = [calculations[key][2]]
     
     return calculations
